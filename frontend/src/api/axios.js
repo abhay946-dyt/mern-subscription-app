@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const LOCAL_API = 'http://localhost:5000/api';
+const PROD_API = 'https://mern-subscription-app.onrender.com/api';
+
 const instance = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL:
+    window.location.hostname === 'localhost'
+      ? LOCAL_API
+      : PROD_API,
+  withCredentials: true,
 });
 
 instance.interceptors.request.use(config => {
