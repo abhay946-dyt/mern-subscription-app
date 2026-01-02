@@ -25,7 +25,8 @@ export default function Login() {
         alignItems: 'center',
         justifyContent: 'center',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
       }}
     >
       <div
@@ -68,8 +69,8 @@ export default function Login() {
             transition: 'all 0.3s ease',
             backgroundColor: '#f8f9fa',
           }}
-          onFocus={(e) => e.target.style.borderColor = '#667eea'}
-          onBlur={(e) => e.target.style.borderColor = '#e1e5e9'}
+          onFocus={e => (e.target.style.borderColor = '#667eea')}
+          onBlur={e => (e.target.style.borderColor = '#e1e5e9')}
         />
 
         <input
@@ -88,8 +89,8 @@ export default function Login() {
             transition: 'all 0.3s ease',
             backgroundColor: '#f8f9fa',
           }}
-          onFocus={(e) => e.target.style.borderColor = '#667eea'}
-          onBlur={(e) => e.target.style.borderColor = '#e1e5e9'}
+          onFocus={e => (e.target.style.borderColor = '#667eea')}
+          onBlur={e => (e.target.style.borderColor = '#e1e5e9')}
         />
 
         <button
@@ -106,27 +107,48 @@ export default function Login() {
             transition: 'all 0.3s ease',
             boxShadow: '0 8px 20px rgba(102, 126, 234, 0.3)',
           }}
-          onMouseOver={(e) => {
+          onMouseOver={e => {
             e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 12px 25px rgba(102, 126, 234, 0.4)';
+            e.target.style.boxShadow =
+              '0 12px 25px rgba(102, 126, 234, 0.4)';
           }}
-          onMouseOut={(e) => {
+          onMouseOut={e => {
             e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 8px 20px rgba(102, 126, 234, 0.3)';
+            e.target.style.boxShadow =
+              '0 8px 20px rgba(102, 126, 234, 0.3)';
           }}
         >
           Login
         </button>
 
-        <p
+        {/* Go to Register Button */}
+        <button
+          type="button"
+          onClick={() => navigate('/register')}
           style={{
-            marginTop: '24px',
-            color: '#666',
-            fontSize: '14px',
+            width: '100%',
+            padding: '14px',
+            marginTop: '16px',
+            background: 'transparent',
+            color: '#667eea',
+            fontSize: '15px',
+            fontWeight: '600',
+            border: '2px solid #667eea',
+            borderRadius: '12px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+          }}
+          onMouseOver={e => {
+            e.target.style.background = '#667eea';
+            e.target.style.color = '#fff';
+          }}
+          onMouseOut={e => {
+            e.target.style.background = 'transparent';
+            e.target.style.color = '#667eea';
           }}
         >
-          {/* Don't have an account? <span style={{ color: '#667eea', fontWeight: '600', cursor: 'pointer' }}>Sign up</span> */}
-        </p>
+          Go to Register
+        </button>
       </div>
     </form>
   );
