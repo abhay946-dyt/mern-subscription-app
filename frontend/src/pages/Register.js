@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import api from '../api/axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [form, setForm] = useState({});
+  const navigate = useNavigate();
 
   const submit = async e => {
     e.preventDefault();
     await api.post('/auth/register', form);
     alert('Registered successfully');
+    navigate('/login'); // 👉 redirect to login after register
   };
 
   return (
@@ -19,7 +22,8 @@ export default function Register() {
         alignItems: 'center',
         justifyContent: 'center',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
         padding: '20px',
       }}
     >
@@ -59,11 +63,8 @@ export default function Register() {
             borderRadius: '14px',
             fontSize: '17px',
             outline: 'none',
-            transition: 'all 0.3s ease',
             backgroundColor: '#f8fafc',
           }}
-          onFocus={(e) => e.target.style.borderColor = '#667eea'}
-          onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
         />
 
         <input
@@ -77,11 +78,8 @@ export default function Register() {
             borderRadius: '14px',
             fontSize: '17px',
             outline: 'none',
-            transition: 'all 0.3s ease',
             backgroundColor: '#f8fafc',
           }}
-          onFocus={(e) => e.target.style.borderColor = '#667eea'}
-          onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
         />
 
         <input
@@ -96,11 +94,8 @@ export default function Register() {
             borderRadius: '14px',
             fontSize: '17px',
             outline: 'none',
-            transition: 'all 0.3s ease',
             backgroundColor: '#f8fafc',
           }}
-          onFocus={(e) => e.target.style.borderColor = '#667eea'}
-          onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
         />
 
         <select
@@ -113,17 +108,9 @@ export default function Register() {
             borderRadius: '14px',
             fontSize: '17px',
             outline: 'none',
-            transition: 'all 0.3s ease',
             backgroundColor: '#f8fafc',
             cursor: 'pointer',
-            appearance: 'none',
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
-            backgroundPosition: 'right 16px center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: '16px',
           }}
-          onFocus={(e) => e.target.style.borderColor = '#667eea'}
-          onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
         >
           <option value="subscriber">Subscriber</option>
           <option value="creator">Creator</option>
@@ -140,30 +127,32 @@ export default function Register() {
             border: 'none',
             borderRadius: '14px',
             cursor: 'pointer',
-            transition: 'all 0.3s ease',
             boxShadow: '0 10px 25px rgba(102, 126, 234, 0.35)',
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = 'translateY(-3px)';
-            e.currentTarget.style.boxShadow = '0 15px 35px rgba(102, 126, 234, 0.45)';
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 10px 25px rgba(102, 126, 234, 0.35)';
           }}
         >
           Register
         </button>
 
-        <p
+        {/* Go to Login Button */}
+        <button
+          type="button"
+          onClick={() => navigate('/login')}
           style={{
-            marginTop: '32px',
-            color: '#64748b',
+            width: '100%',
+            padding: '14px',
+            marginTop: '18px',
+            background: 'transparent',
+            color: '#667eea',
             fontSize: '15px',
+            fontWeight: '600',
+            border: '2px solid #667eea',
+            borderRadius: '12px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
           }}
         >
-          {/* Already have an account? <span style={{ color: '#667eea', fontWeight: '600', cursor: 'pointer' }}>Login</span> */}
-        </p>
+          Go to Login
+        </button>
       </div>
     </form>
   );
